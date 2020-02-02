@@ -1,8 +1,8 @@
-# quadfour
+# Quad Four
 
 **Context:** School Project for _Enterprose Application Development_ (University of Cincinnati - Spring 2020)
 
-**With:** [add teammates here]
+**Collaborators:** Joe Boylson, Aaron Zorzi, Hunter Holland 
 
 **Project Synopsis:**
 
