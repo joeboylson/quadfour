@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+}
+
+main {
+  margin: 89px;
+}
+
+.task {
+  background-color: #EEE;
+  padding: 21px;
+}

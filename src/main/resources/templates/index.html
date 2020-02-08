@@ -5,16 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quad Four</title>
+
+    <!-- index scripts -->
+    <script th:src="@{/js/index.js}"></script>
+
+    <!-- index styles -->
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
 </head>
 <body>
 
-    <h1>Hello World</h1>
-    <p>Welcome to Quad Four</p>
+    <main>
 
-    <div>
-        <p>Your task is:</p>
-        <p th:text="${taskDTO}" />
-    </div>
+        <h1>Hello World</h1>
+        <p>Welcome to Quad Four</p>
+        
+        <div class='task'>
+            <p>Your task is:</p>
+            <p th:text="${taskDTO}" />
+        </div>
+
+    </main>
     
 </body>
 </html>
