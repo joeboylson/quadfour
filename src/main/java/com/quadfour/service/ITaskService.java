@@ -1,4 +1,5 @@
 package com.quadfour.service;
+import org.springframework.stereotype.Service;
 import com.quadfour.dto.TaskDTO;
 
 /**
@@ -6,6 +7,7 @@ import com.quadfour.dto.TaskDTO;
  * @author JOE
  */
 
+@Service
 public interface ITaskService {
 
 	/**

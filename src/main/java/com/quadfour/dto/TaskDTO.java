@@ -45,7 +45,8 @@ public class TaskDTO {
 		this.isHighUrgency = isHighUrgency;
 	}
 	
-
-	
-
+	@Override
+	public String toString() {
+		return taskId + " " + taskText + " " + isHighImportance + " " + isHighUrgency + " "; 
+	}
 }
