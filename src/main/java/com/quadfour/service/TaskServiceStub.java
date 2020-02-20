@@ -1,4 +1,8 @@
 package com.quadfour.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 import com.quadfour.dto.TaskDTO;
 
@@ -27,11 +31,32 @@ public class TaskServiceStub implements ITaskService {
 	/**
 	 * Save New Task
 	 * @param taskDTO
+	 * @return
 	 */
 	@Override
-	public void save(TaskDTO taskDTO) {
-		System.out.println("::: SAVE TASK");
+	public boolean save(TaskDTO taskDTO) {
+        return true;
+    }
+
+	/**
+	 * Save New Task
+	 * @param searchTerm
+	 */
+	@Override
+	public List<TaskDTO> fetchTasks(String searchTerm) {
+
+		List<TaskDTO> matchingTasks = new ArrayList<TaskDTO>();
+
+		if (searchTerm.contains("mportant") || searchTerm.contains("rgent")) {
+			TaskDTO task = new TaskDTO();
+
+			task.setTaskText("An important and urgent task");
+			task.setIsHighImportance(true);
+			task.setIsHighUrgency(true);
+			matchingTasks.add(task);
+
+		}
+		return matchingTasks;
 	}
-	
 
 }

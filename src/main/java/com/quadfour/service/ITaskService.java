@@ -2,6 +2,8 @@ package com.quadfour.service;
 import org.springframework.stereotype.Service;
 import com.quadfour.dto.TaskDTO;
 
+import java.util.List;
+
 /**
  * CRUD OPERATIONS FOR TASKS
  * @author JOE
@@ -20,7 +22,14 @@ public interface ITaskService {
 	/**
 	 * Save New Task
 	 * @param taskDTO
+	 * @return
 	 */
-	void save(TaskDTO taskDTO);
+	boolean save(TaskDTO taskDTO);
+
+	/**
+	 * Save New Task
+	 * @param taskDTO
+	 */
+	public List<TaskDTO> fetchTasks(String searchTerm);
 
 }
