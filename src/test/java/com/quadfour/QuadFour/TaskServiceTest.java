@@ -66,11 +66,11 @@ public class TaskServiceTest {
     // WHEN FUNCTIONS
 
     private void whenUserSearchesForUrgentTask () throws Exception {
-        tasks = taskService.fetchTasks("Urgent");
+        tasks = taskService.searchTasks("Urgent");
     }
 
     private void whenTheUserSearchesForJunk() throws Exception {
-        tasks = taskService.fetchTasks("thistaskdoesnotexist");
+        tasks = taskService.searchTasks("thistaskdoesnotexist");
     }
 
     private void whenUserAddsTextText() {

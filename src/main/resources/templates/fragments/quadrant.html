@@ -1,0 +1,15 @@
+<!--
+PARAMS:
+- title: Title of the Quadrant
+- tasks: Task Array
+-->
+<div th:fragment="quadrant" class="quadrant card">
+
+    <h2 th:text="${title}" class="quadrant-header"></h2>
+
+    <div class="quadrant-task-list list-group">
+        <a href="#" th:each="task : ${tasks}" th:text="${task.taskText}" class="quadrant-task list-group-item list-group-item-action">
+        </a>
+    </div>
+
+</div>

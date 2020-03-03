@@ -1,7 +1,8 @@
 package com.quadfour.service;
 import org.springframework.stereotype.Service;
-import com.quadfour.dto.TaskDTO;
 
+import com.quadfour.dto.TaskDTO;
+import com.quadfour.dto.CategorizedTasksDTO;
 import java.util.List;
 
 /**
@@ -28,8 +29,13 @@ public interface ITaskService {
 
 	/**
 	 * Save New Task
-	 * @param taskDTO
 	 */
-	public List<TaskDTO> fetchTasks(String searchTerm);
+	public CategorizedTasksDTO getCategorizedTasks();
+
+	/**
+	 * Save New Task
+	 * @param searchTerm
+	 */
+	public List<TaskDTO> searchTasks(String searchTerm);
 
 }
