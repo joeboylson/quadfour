@@ -4,8 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.ArrayList;
+import java.util.List;
 import com.quadfour.dto.TaskDTO;
+import com.quadfour.dto.CategorizedTasksDTO;
+
 import com.quadfour.service.ITaskService;
+
+
 
 @Controller
 public class QuadFourController {
@@ -18,8 +25,15 @@ public class QuadFourController {
 	 * @return index.html
 	 */
     @RequestMapping(value="/", method=RequestMethod.GET)
-    public String index() {
-        return "index";
+    public String index(Model model) {
+
+		CategorizedTasksDTO categorizedTasks = taskServiceStub.getCategorizedTasks();
+		model.addAttribute("importantUrgent", categorizedTasks.getImportantUrgent());
+		model.addAttribute("importantNotUrgent", categorizedTasks.getImportantNotUrgent());
+		model.addAttribute("notImportantUrgent", categorizedTasks.getNotImportantUrgent());
+		model.addAttribute("notImportantNotUrgent", categorizedTasks.getNotImportantNotUrgent());
+
+    	return "index";
     }
     
 	/**
@@ -28,8 +42,7 @@ public class QuadFourController {
 	 */
     @RequestMapping(value="/task", method=RequestMethod.GET)
     public String readOne(Model model) {
-    	System.out.println("::: /TASK");
-    	
+
     	TaskDTO taskDTO = taskServiceStub.fetchById(55); 
     	model.addAttribute("taskDTO", taskDTO);
         return "index";

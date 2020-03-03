@@ -9,5 +9,5 @@ public interface ITaskDAO {
 
     Iterable<TaskDTO> fetchAll() throws Exception;
 
-    List<TaskDTO> fetchSpecimensByPlantId(int plantID);
+    List<TaskDTO> fetchTaskByTaskId(int taskID);
 }

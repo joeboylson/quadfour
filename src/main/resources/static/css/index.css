@@ -1,12 +1,114 @@
-body {
+/* IMPORT ROBOTO AND ROBOTO CONDENSED */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+
+/* FONT */
+
+/*
+P.S.
+Using fibonacci series for font size and line height.
+I thing it looks really good.
+Joe
+
+[ 13, 21, 34, 55, 89 ]
+*/
+
+* {
+  /* default font style */
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  line-height: 21px;
   margin: 0;
 }
 
-main {
-  margin: 89px;
+h1, h2, h3 {
+  font-family: 'Roboto Condensed', sans-serif;
+  text-transform: uppercase;
 }
 
-.task {
+h2 {
+  font-size: 21px;
+  line-height: 34px;
+}
+
+h1 {
+  font-size: 34px;
+  line-height: 55px;
+}
+
+/* GENERAL */
+
+body {
+  margin: 89px;
+  display: flex;
+}
+
+nav {
+  height: calc(100vh - 178px);
+  flex: 0 0 15%;
+}
+
+main {
+  height: calc(100vh - 178px);
+  flex: 0 0 70%;
+}
+
+/* NAV FRAGMENTS */
+
+.add-new {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  text-align: center;
+}
+
+.add-new button {
+  width: 100%;
+  max-width: 250px;
+  display: block;
+  align-self: center;
+}
+
+
+/* QUADRANT */
+
+.quadrant-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: space-evenly
+}
+
+.quadrant {
+  flex: 0 0 calc(50% - 8px);
+  height: calc(50% - 8px);
+  padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.quadrant-task-list {
+  flex: 0 0 calc(100% - 34px);
+  overflow-y: auto;
+}
+
+.quadrant-task {
+  padding: 5px 21px;
   background-color: #EEE;
-  padding: 21px;
+
+  cursor: pointer;
+  transition-duration: 0.25s;
+}
+
+.quadrant-task:hover {
+  background-color: #DDD;
+}
+
+/*BOOTSTRAP OVERRIDES*/
+
+.card {
+  border: none
 }
