@@ -11,7 +11,7 @@ import com.quadfour.dto.TaskDTO;
 import com.quadfour.dto.CategorizedTasksDTO;
 
 import com.quadfour.service.ITaskService;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -35,6 +35,26 @@ public class QuadFourController {
 
     	return "index";
     }
+
+	/**
+	 * '/task'
+	 * @return index.html
+	 */
+	@RequestMapping(value="/quadrant", method=RequestMethod.GET)
+	public String quadrant(
+			@RequestParam(value="important", defaultValue ="false") boolean important,
+			@RequestParam(value="urgent", defaultValue ="false") boolean urgent,
+			Model model
+	) {
+
+		System.out.println(important);
+		System.out.println(urgent);
+
+		ArrayList<TaskDTO> tasks = taskServiceStub.getTasksByQuadrant(important, urgent);
+		model.addAttribute("tasks", tasks);
+
+		return "onequadrant";
+	}
     
 	/**
 	 * '/task'

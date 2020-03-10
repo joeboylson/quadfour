@@ -3,6 +3,8 @@ import org.springframework.stereotype.Service;
 
 import com.quadfour.dto.TaskDTO;
 import com.quadfour.dto.CategorizedTasksDTO;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +33,11 @@ public interface ITaskService {
 	 * Save New Task
 	 */
 	public CategorizedTasksDTO getCategorizedTasks();
+
+	/**
+	 * Save New Task
+	 */
+	public ArrayList<TaskDTO> getTasksByQuadrant(boolean important, boolean urgent);
 
 	/**
 	 * Save New Task

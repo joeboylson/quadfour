@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quad Four</title>
+
+    <!-- index scripts -->
+    <script th:src="@{/js/index.js}"></script>
+
+    <!-- index styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+</head>
+<body>
+
+<nav>
+    <div th:replace="fragments/nav.html :: add-new"></div>
+</nav>
+
+<main>
+
+    <div class="quadrant-wrapper">
+        <!-- TODO: make the title dynamic -->
+        <div th:replace="fragments/quadrant.html :: quadrant(title='? Important and ? Urgent', tasks=${tasks})"></div>
+    </div>
+
+</main>
+
+</body>
+</html>

@@ -5,7 +5,12 @@ PARAMS:
 -->
 <div th:fragment="quadrant" class="quadrant card">
 
-    <h2 th:text="${title}" class="quadrant-header"></h2>
+    <h2>
+        <a
+            th:href="@{'/quadrant/?important=true&urgent=true'}"
+            th:text="${title}"
+        />
+    </h2>
 
     <div class="quadrant-task-list list-group">
         <a href="#" th:each="task : ${tasks}" th:text="${task.taskText}" class="quadrant-task list-group-item list-group-item-action">

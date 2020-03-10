@@ -69,8 +69,6 @@ public class TaskServiceStub implements ITaskService {
 
 			taskList.forEach( t -> {
 
-				System.out.println(t);
-
 				JSONObject taskObj = (JSONObject) t;
 				TaskDTO task = new TaskDTO();
 
@@ -116,6 +114,58 @@ public class TaskServiceStub implements ITaskService {
 		}
 
 		return categorizedTasks;
+	}
+
+	/**
+	 * Fetch all tasks
+	 */
+	public ArrayList<TaskDTO> getTasksByQuadrant(boolean isImportant, boolean isUrgent) {
+
+		String base_path = System.getProperty("user.dir");
+		ArrayList<TaskDTO> tasks = new ArrayList<TaskDTO>();
+
+		FileReader reader = null;
+
+		try {
+			reader = new FileReader(base_path + "/src/main/resources/assets/tasks.json");
+			JSONParser jsonParser = new JSONParser();
+			Object obj = jsonParser.parse(reader);
+
+			JSONArray taskList = (JSONArray) obj;
+
+			System.out.println(taskList);
+
+			taskList.forEach( t -> {
+
+				JSONObject taskObj = (JSONObject) t;
+				TaskDTO task = new TaskDTO();
+
+				Long long_id = (Long) taskObj.get("taskId");
+				Integer id = Math.toIntExact(long_id);
+				String text = (String) taskObj.get("taskText");
+				Boolean important = (Boolean) taskObj.get("isHighImportance");
+				Boolean urgent = (Boolean) taskObj.get("isHighUrgency");
+
+				task.setTaskId(id);
+				task.setTaskText(text);
+				task.setIsHighImportance(important);
+				task.setIsHighUrgency(urgent);
+
+				if (important == isImportant && isUrgent == urgent) {
+					tasks.add(task);
+				}
+
+			});
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return tasks;
 	}
 
 	/**
