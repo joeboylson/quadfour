@@ -13,7 +13,12 @@ PARAMS:
     </h2>
 
     <div class="quadrant-task-list list-group">
-        <a href="#" th:each="task : ${tasks}" th:text="${task.taskText}" class="quadrant-task list-group-item list-group-item-action">
+        <a
+                href="#"
+                th:href="'/task?taskId=' + ${task.taskId}"
+                th:each="task : ${tasks}" 
+                th:text="${task.taskText}"
+                class="quadrant-task list-group-item list-group-item-action">
         </a>
     </div>
 

@@ -1,5 +1,11 @@
 package com.quadfour.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class TaskDTO {
 	
 	/*
@@ -7,7 +13,9 @@ public class TaskDTO {
 	 * - select all > right click > source > generate getter and setters
 	 * - in GUI > select all > set "insert point" to after "isHighUrgency" (or last attr.) 
 	 */
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int taskId;
 	private String taskText;
 	private Boolean isHighImportance;

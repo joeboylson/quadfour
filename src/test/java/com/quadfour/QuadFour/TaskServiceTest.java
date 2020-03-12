@@ -3,6 +3,7 @@ package com.quadfour.QuadFour;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
@@ -89,8 +90,9 @@ public class TaskServiceTest {
 
     private void thenTaskIsSaved() {
         try {
-            boolean result = taskService.save(task);
-            assertTrue(result);
+            TaskDTO taskDTO = taskService.save(task);
+            taskDTO.setTaskText("TEXT");
+            assertEquals( taskDTO.getTaskText(), "TEXT" );
         } catch (Exception e) {
             fail();
         }
