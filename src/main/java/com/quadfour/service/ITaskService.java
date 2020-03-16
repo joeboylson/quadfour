@@ -1,16 +1,8 @@
 package com.quadfour.service;
+
 import org.springframework.stereotype.Service;
-
 import com.quadfour.dto.TaskDTO;
-import com.quadfour.dto.CategorizedTasksDTO;
-
-import java.util.ArrayList;
 import java.util.List;
-
-/**
- * CRUD OPERATIONS FOR TASKS
- * @author JOE
- */
 
 @Service
 public interface ITaskService {
@@ -27,17 +19,14 @@ public interface ITaskService {
 	 * @param taskDTO
 	 * @return
 	 */
-	boolean save(TaskDTO taskDTO);
+	TaskDTO save(TaskDTO taskDTO) throws Exception;
 
 	/**
-	 * Save New Task
+	 * Fetch By Id
+	 * @param id
+	 * @return taskDTO
 	 */
-	public CategorizedTasksDTO getCategorizedTasks();
-
-	/**
-	 * Save New Task
-	 */
-	public ArrayList<TaskDTO> getTasksByQuadrant(boolean important, boolean urgent);
+	void deleteById(int id);
 
 	/**
 	 * Save New Task
