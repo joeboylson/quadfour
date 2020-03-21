@@ -2,7 +2,6 @@ package com.quadfour.dto;
 
 import java.util.List;
 import java.util.ArrayList;
-import com.quadfour.dto.TaskDTO;
 
 public class CategorizedTasksDTO {
 

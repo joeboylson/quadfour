@@ -3,22 +3,33 @@ PARAMS:
 - title: Title of the Quadrant
 - tasks: Task Array
 -->
-<div th:fragment="quadrant" class="quadrant card">
+<div th:fragment="quadrant" class="quadrant">
 
-    <h2>
-        <a
-            th:href="@{'/quadrant/?important=true&urgent=true'}"
-            th:text="${title}"
-        />
-    </h2>
+    <a
+        class="quadrant-title"
+        th:classappend="${status}"
+        th:href="@{'/quadrant/?important=true&urgent=true'}"
+    >
+        <th:block th:switch="${status}">
+            <i th:case="'high'" class="material-icons">keyboard_capslock</i>
+            <i th:case="'medium'" class="material-icons">keyboard_arrow_up</i>
+            <i th:case="'low'" class="material-icons">arrow_drop_up</i>
+        </th:block>
 
-    <div class="quadrant-task-list list-group">
+        <strong th:text="${title}"/>
+    </a>
+
+    <a href="/newtask" class='icon-button'>
+        <i class="material-icons">add</i>
+    </a>
+
+    <div class="quadrant-list">
         <a
                 href="#"
                 th:href="'/task?taskId=' + ${task.taskId}"
                 th:each="task : ${tasks}" 
                 th:text="${task.taskText}"
-                class="quadrant-task list-group-item list-group-item-action">
+                class="quadrant-list-item">
         </a>
     </div>
 

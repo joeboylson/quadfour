@@ -1,0 +1,46 @@
+#nav-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* NAV FRAGMENTS */
+
+.nav-item {
+    flex: 0 0 100%;
+}
+
+.username-icon {
+    background-color: #2f54eb;
+    color: white;
+    width: 21px;
+    margin-right: 8px;
+    text-align: center;
+}
+
+.nav-item .icon-button {
+    padding: 13px 13px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #2c2c2c;
+    transition-duration: 0.25s;
+}
+
+.nav-item .icon-button:hover {
+    background-color: rgb(227, 226, 223);
+}
+
+.nav-item .icon-button .material-icons {
+    width: 21px;
+    font-size: 21px;
+    margin-right: 8px;
+    transform: translateY(-1px);
+}
+
+.nav-item .icon-button a {
+    flex: 0 0 calc(100% - 21px);
+}
+
+.nav-item hr {
+    border: 1px solid rgb(227, 226, 223);
+}

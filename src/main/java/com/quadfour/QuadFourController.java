@@ -58,9 +58,6 @@ public class QuadFourController {
 			Model model
 	) {
 
-		System.out.println(important);
-		System.out.println(urgent);
-
 		ArrayList<TaskDTO> tasks = categorizedTasksService.getTasksByQuadrant(important, urgent);
 		model.addAttribute("tasks", tasks);
 

@@ -1,0 +1,150 @@
+/* QUADRANT */
+
+.quadrant-wrapper {
+    height: calc(100vh);
+    width: calc(100% - 13px);
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-row: auto;
+    grid-column-gap: 13px;
+    grid-row-gap: 13px;
+}
+
+.quadrant {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.quadrant .quadrant-title {
+    flex: 0 0 calc(90% - 26px);
+    padding: 0 13px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition-duration: 0.25s;
+    color: #2c2c2c;
+    text-decoration: none;
+    height: 55px;
+}
+
+.quadrant .quadrant-title:hover {
+    background-color: rgb(227, 226, 223);
+}
+
+.quadrant .quadrant-title .material-icons {
+    width: 21px;
+    font-size: 21px;
+    margin-right: 8px;
+    transform: translateY(-1px);
+}
+
+.quadrant .icon-button {
+    flex: 0 0 10%;
+}
+
+.quadrant-list {
+    flex: 0 0 100%;
+    height: calc(100% - 55px);
+}
+
+/*.quadrant-wrapper {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+
+/*    justify-content: space-evenly*/
+/*}*/
+
+/*.quadrant {*/
+/*    flex: 0 0 calc(50% - 8px);*/
+/*    height: calc(50% - 8px);*/
+/*    padding: 8px;*/
+
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*.quadrant-task-list {*/
+/*    flex: 0 0 calc(100% - 34px);*/
+/*    overflow-y: auto;*/
+/*}*/
+
+/*.quadrant-task {*/
+/*    padding: 5px 21px;*/
+/*    background-color: #EEE;*/
+
+/*    cursor: pointer;*/
+/*    transition-duration: 0.25s;*/
+/*}*/
+
+/*.quadrant-task:hover {*/
+/*    background-color: #DDD;*/
+/*}*/
+
+
+/*!*body {*!*/
+/*!*  margin: 0;*!*/
+/*!*  height: 100vh;*!*/
+/*!*  width: 100%;*!*/
+/*!*  overflow-y: hidden;*!*/
+/*!*}*!*/
+
+/*!*::-webkit-scrollbar {*!*/
+/*!*  display: none;*!*/
+/*!*  width: 0;*!*/
+/*!*}*!*/
+
+/*!*.quadrant-wrapper {*!*/
+/*!*  margin: 21px;*!*/
+/*!*  display: grid;*!*/
+/*!*  grid-template-columns: repeat(2, calc(50% - (21px / 2)) );*!*/
+/*!*  grid-template-rows: repeat(2, calc(50vh - 31.5px));*!*/
+/*!*  column-gap: 21px;*!*/
+/*!*  row-gap: 21px;*!*/
+/*!*}*!*/
+
+/*!*.quadrant {*!*/
+/*!*  display: grid;*!*/
+/*!*  grid-template-columns: repeat(4, calc(25% - ((21px / 4) * 3)));*!*/
+/*!*  grid-template-rows: repeat(4, calc(25% - ((21px / 4) * 3)));*!*/
+/*!*  column-gap: 21px;*!*/
+/*!*  row-gap: 21px;*!*/
+/*!*  overflow-y: scroll;*!*/
+/*!*}*!*/
+
+/*!*.title {*!*/
+/*!*  grid-column-start: 1;*!*/
+/*!*  grid-column-end: 5;*!*/
+/*!*  height: 50px;*!*/
+/*!*}*!*/
+
+/*!*.quadrant-item {*!*/
+/*!*  background-color: #F5F5F5;*!*/
+/*!*  height: 100px;*!*/
+/*!*  transition-duration: 0.25s;*!*/
+/*!*}*!*/
+
+/*!*.quadrant-item:hover {*!*/
+/*!*  background-color: #EEE;*!*/
+/*!*  cursor: pointer;*!*/
+/*!*}*!*/
+
+/*!*.quadrant-item-content {*!*/
+/*!*  padding: 13px;*!*/
+/*!*  font-family: 'Roboto', sans-serif;*!*/
+/*!*  overflow: hidden;*!*/
+/*!*  height: calc(100% - (13px * 3));*!*/
+/*!*}*!*/
+
+/*!*.high .quadrant-item-content {*!*/
+/*!*  border-top: 13px solid #f5222d;*!*/
+/*!*}*!*/
+
+/*!*.medium .quadrant-item-content {*!*/
+/*!*  border-top: 13px solid #fadb14;*!*/
+/*!*}*!*/
+
+/*!*.low .quadrant-item-content {*!*/
+/*!*  border-top: 13px solid #2f54eb;*!*/
+/*!*}*!*/

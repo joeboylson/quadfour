@@ -19,14 +19,14 @@
     <div th:replace="fragments/nav.html :: add-new"></div>
 </nav>
 
-<main>
+    <main>
 
-    <div class="quadrant-wrapper">
-        <!-- TODO: make the title dynamic -->
-        <div th:replace="fragments/quadrant.html :: quadrant(title='? Important and ? Urgent', tasks=${tasks})"></div>
-    </div>
+        <div class="quadrant-wrapper">
+            <!-- TODO: make the title dynamic -->
+            <div th:replace="fragments/quadrant.html :: quadrant(title='? Important and ? Urgent', tasks=${tasks})"></div>
+        </div>
 
-</main>
+    </main>
 
 </body>
 </html>

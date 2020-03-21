@@ -1,9 +1,46 @@
 <!--
-PARAMS:
+NAV FRAGMENTS
 -->
 
-<div th:fragment="add-new" class="add-new card">
-    <a href="/newtask">Add New Task</a>
+<!-- USERNAME ICON WITH HOMEPAGE LINK -->
+<div th:fragment="workspace-banner" class="nav-item full-width">
+    <link th:href="@{/css/nav.css}" rel="stylesheet" />
+
+    <a href="/" class='icon-button'>
+        <p class="username-icon" th:text="${#strings.substring(username,0,1)}"></p>
+        <p th:text="${username + '''s Workspace'}"></p>
+    </a>
+
 </div>
 
-<!-- add new fragments for different option cases -->
+
+<!-- ADD NEW BUTTON -->
+<!-- TODO make the link dynamic -->
+<div th:fragment="add-new" class="nav-item">
+    <link th:href="@{/css/nav.css}" rel="stylesheet" />
+
+    <a href="/newtask" class='icon-button'>
+        <i class="material-icons">add</i>
+        <p>Add New Task</p>
+    </a>
+</div>
+
+
+
+<!-- SEARCH MODAL BUTTON -->
+<!-- TODO make this open a search modal -->
+<div th:fragment="search-modal" class="nav-item">
+    <link th:href="@{/css/nav.css}" rel="stylesheet" />
+
+    <a href="#" class='icon-button'>
+        <i class="material-icons">search</i>
+        <p>Search</p>
+    </a>
+</div>
+
+
+
+<!-- DIVIDER -->
+<div th:fragment="divider" class="nav-item divider">
+    <hr />
+</div>
