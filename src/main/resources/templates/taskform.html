@@ -6,40 +6,63 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quad Four</title>
 
-    <!-- index scripts -->
-    <script th:src="@{/static/js/index.js}"></script>
-
-    <!-- index styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link th:href="@{/static/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/task.css}" rel="stylesheet" />
+    <link th:href="@{/css/nav.css}" rel="stylesheet" />
 </head>
 <body>
 
-<main>
-    <form
+    <nav>
+        <div id="nav-content">
+            <div th:replace="fragments/nav.html :: workspace-banner(username='Username')"></div>
+            <div th:replace="fragments/nav.html :: search-modal"></div>
+            <div th:replace="fragments/nav.html :: divider"></div>
+            <div th:replace="fragments/nav.html :: add-new(params='')"></div>
+        </div>
+    </nav>
+
+    <main>
+
+        <form
             action="#"
             th:action="${formaction}"
             th:object="${task}"
             method="POST"
-            enctype="multipart/form-data">
+            enctype="multipart/form-data"
+            class="task-wrapper"
+        >
 
-        <p th:text="${task.taskId}"></p>
-        <p th:text="${task.taskText}"></p>
-        <p th:text="${task.isHighImportance}"></p>
-        <p th:text="${task.isHighUrgency}"></p>
+            <div class="task-field">
+                <label class="textarea">
+                    <span class="textarea-label">Task Text</span>
+                    <textarea type="text" name="task" th:field="*{taskText}"></textarea>
+                </label>
+            </div>
 
-        <hr />
-        <br />
+            <div class="task-field checkbox">
+                <label class="toggle">
+                    <span class="toggle-label">High Importance</span>
+                    <input class="toggle-checkbox" type="checkbox" name="isHighImportance" th:field="*{isHighImportance}">
+                    <div class="toggle-switch"></div>
+                </label>
+            </div>
 
-        <input type="text" name="task" th:field="*{taskText}">
+            <div class="task-field checkbox">
+                <label class="toggle">
+                    <span class="toggle-label">High Urgency</span>
+                    <input class="toggle-checkbox" type="checkbox" name="isHighUrgency" th:field="*{isHighUrgency}">
+                    <div class="toggle-switch"></div>
+                </label>
+            </div>
 
-        <input type="checkbox" name="isHighImportance" th:field="*{isHighImportance}">
+            <div class="task-field">
+                <div class="button">
+                    <input type="submit" value="Save"/>
+                </div>
+            </div>
 
-        <input type="checkbox" name="isHighUrgency" th:field="*{isHighUrgency}">
-
-        <input type="submit" value="Save"/>
-    </form>
-</main>
+        </form>
+    </main>
 
 </body>
 </html>

@@ -6,25 +6,54 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quad Four</title>
 
-    <!-- index scripts -->
-    <script th:src="@{/js/index.js}"></script>
-
-    <!-- index styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/task.css}" rel="stylesheet" />
+    <link th:href="@{/css/nav.css}" rel="stylesheet" />
 </head>
 <body>
 
-<main>
-    <p th:text="${task.taskId}"></p>
-    <p th:text="${task.taskText}"></p>
-    <p th:text="${task.isHighImportance}"></p>
-    <p th:text="${task.isHighUrgency}"></p>
+    <nav>
+        <div id="nav-content">
+            <div th:replace="fragments/nav.html :: workspace-banner(username='Username')"></div>
+            <div th:replace="fragments/nav.html :: search-modal"></div>
+            <div th:replace="fragments/nav.html :: divider"></div>
+            <div th:replace="fragments/nav.html :: add-new(params='')"></div>
+        </div>
+    </nav>
 
-    <a href="#" th:href="'/updatetask?taskId=' + ${task.taskId}">Update</a> <br/>
-    <a href="#" th:href="'/duplicatetask?taskId=' + ${task.taskId}">Duplicate</a> <br/>
-    <a href="#" th:href="'/deletetask?taskId=' + ${task.taskId}">Delete</a>
-</main>
+    <main>
+
+        <div class="task-wrapper">
+
+            <div class="task-field">
+                <p>Task Text</p>
+                <div class="textarea-readonly">
+                    <p th:text="${task.taskText}"></p>
+                </div>
+            </div>
+
+            <div class="task-field">
+                <div class="checkbox-readonly">
+                    <p>High Importance</p>
+                    <div class="status-box"  th:classappend="${task.isHighImportance} ? checked : ''"></div>
+                </div>
+            </div>
+
+            <div class="task-field">
+                <div class="checkbox-readonly">
+                    <p>High Urgency</p>
+                    <div class="status-box" th:classappend="${task.isHighUrgency} ? checked : ''"></div>
+                </div>
+            </div>
+
+    <!--TODO: move to nav-->
+    <!--        <a href="#" th:href="'/updatetask?taskId=' + ${task.taskId}">Update</a> <br/>-->
+    <!--        <a href="#" th:href="'/duplicatetask?taskId=' + ${task.taskId}">Duplicate</a> <br/>-->
+    <!--        <a href="#" th:href="'/deletetask?taskId=' + ${task.taskId}">Delete</a>-->
+
+        </div>
+
+    </main>
 
 </body>
 </html>
