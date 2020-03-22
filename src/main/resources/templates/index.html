@@ -7,8 +7,11 @@
     <title>Quad Four</title>
 
     <script th:src="@{/js/index.js}"></script>
+    <script th:src="@{/js/quadrant.js}"></script>
+
     <link th:href="@{/css/index.css}" rel="stylesheet" />
     <link th:href="@{/css/quadrant.css}" rel="stylesheet" />
+
 </head>
 <body>
 
@@ -30,10 +33,10 @@
     <main>
 
         <div class="quadrant-wrapper">
-            <div th:replace="fragments/quadrant.html :: quadrant(title='Important And Urgent', tasks=${importantUrgent}, status='high')"></div>
-            <div th:replace="fragments/quadrant.html :: quadrant(title='Important And Not Urgent', tasks=${importantNotUrgent}, status='medium')"></div>
-            <div th:replace="fragments/quadrant.html :: quadrant(title='Not Important And Urgent', tasks=${notImportantUrgent}, status='medium')"></div>
-            <div th:replace="fragments/quadrant.html :: quadrant(title='Not Important And Not Urgent', tasks=${notImportantNotUrgent}, status='low')"></div>
+            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${importantUrgent})"></div>
+            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${importantNotUrgent})"></div>
+            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${notImportantUrgent})"></div>
+            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${notImportantNotUrgent})"></div>
         </div>
 
     </main>

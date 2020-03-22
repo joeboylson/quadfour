@@ -23,7 +23,7 @@
 
         <div class="quadrant-wrapper">
             <!-- TODO: make the title dynamic -->
-            <div th:replace="fragments/quadrant.html :: quadrant(title='? Important and ? Urgent', tasks=${tasks})"></div>
+            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${quadrant})"></div>
         </div>
 
     </main>
