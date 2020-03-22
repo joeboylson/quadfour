@@ -45,3 +45,44 @@
 .nav-item hr {
     border: 1px solid rgb(227, 226, 223);
 }
+
+/*SEARCH MODAL*/
+
+#search-modal::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0.68, 0, 0.32, 1);
+    pointer-events: none;
+}
+
+
+#search-modal.open::before {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#search-modal-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 500px;
+    background-color: rgb(227, 226, 223);
+    z-index: +1;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0.68, 0, 0.32, 1);
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+#search-modal-content.open {
+    transform: translateY(0);
+    opacity: 1;
+}

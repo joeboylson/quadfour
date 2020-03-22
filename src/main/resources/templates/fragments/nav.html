@@ -15,7 +15,6 @@ NAV FRAGMENTS
 
 
 <!-- ADD NEW BUTTON -->
-<!-- TODO make the link dynamic -->
 <div th:fragment="add-new" class="nav-item">
     <link th:href="@{/css/nav.css}" rel="stylesheet" />
 
@@ -30,13 +29,19 @@ NAV FRAGMENTS
 
 <!-- SEARCH MODAL BUTTON -->
 <!-- TODO make this open a search modal -->
-<div th:fragment="search-modal" class="nav-item">
+<div th:fragment="search-modal" class="nav-item" id="search-modal" onclick="toggleModal()">
     <link th:href="@{/css/nav.css}" rel="stylesheet" />
+    <script th:src="@{/js/search.js}"></script>
 
-    <a href="#" class='icon-button'>
+    <a class='icon-button'>
         <i class="material-icons">search</i>
         <p>Search</p>
     </a>
+
+    <div id="search-modal-content">
+
+    </div>
+
 </div>
 
 

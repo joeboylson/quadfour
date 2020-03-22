@@ -12,9 +12,10 @@
 }
 
 .quadrant-wrapper.single-quadrant {
-    height: 100vh;
-    width: 100%;
-    grid-template-columns: 100% 100%;
+    height: calc(100vh);
+    width: calc(100% - 42px);
+    margin: auto;
+    grid-template-columns: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
@@ -58,6 +59,10 @@
     display: grid;
     place-items: center;
     color: #2c2c2c;
+}
+
+.quadrant-wrapper.single-quadrant .quadrant .icon-button {
+    display: none;
 }
 
 .quadrant .icon-button:hover {
