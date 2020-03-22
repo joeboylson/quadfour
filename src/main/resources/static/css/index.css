@@ -1,8 +1,11 @@
 /* IMPORT ROBOTO AND ROBOTO CONDENSED */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-/* FONT */
+
+
+                                                                                       /* FONT */
 
 /*
 P.S.
@@ -23,7 +26,6 @@ Joe
 
 h1, h2, h3 {
   font-family: 'Roboto Condensed', sans-serif;
-  text-transform: uppercase;
 }
 
 h2 {
@@ -39,76 +41,17 @@ h1 {
 /* GENERAL */
 
 body {
-  margin: 89px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 nav {
-  height: calc(100vh - 178px);
-  flex: 0 0 15%;
+  flex: 0 0 20%;
+  height: 100vh;
+  background-color: rgb(247, 246, 243);
 }
 
 main {
-  height: calc(100vh - 178px);
-  flex: 0 0 70%;
-}
-
-/* NAV FRAGMENTS */
-
-.add-new {
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
-  text-align: center;
-}
-
-.add-new button {
-  width: 100%;
-  max-width: 250px;
-  display: block;
-  align-self: center;
-}
-
-
-/* QUADRANT */
-
-.quadrant-wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-
-  justify-content: space-evenly
-}
-
-.quadrant {
-  flex: 0 0 calc(50% - 8px);
-  height: calc(50% - 8px);
-  padding: 8px;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.quadrant-task-list {
-  flex: 0 0 calc(100% - 34px);
-  overflow-y: auto;
-}
-
-.quadrant-task {
-  padding: 5px 21px;
-  background-color: #EEE;
-
-  cursor: pointer;
-  transition-duration: 0.25s;
-}
-
-.quadrant-task:hover {
-  background-color: #DDD;
-}
-
-/*BOOTSTRAP OVERRIDES*/
-
-.card {
-  border: none
+  flex: 0 0 80%;
+  height: 100vh;
 }

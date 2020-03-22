@@ -1,5 +1,7 @@
 package com.quadfour;
+import com.quadfour.dto.QuadrantDTO;
 import com.quadfour.service.ICategorizedTasksService;
+import com.quadfour.service.IQuadrantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,9 @@ public class QuadFourController {
 
 	@Autowired
 	private ITaskService taskService;
+
+	@Autowired
+	private IQuadrantService quadrantService;
 
 	@Autowired
 	private ICategorizedTasksService categorizedTasksService;
@@ -58,11 +63,8 @@ public class QuadFourController {
 			Model model
 	) {
 
-		System.out.println(important);
-		System.out.println(urgent);
-
-		ArrayList<TaskDTO> tasks = categorizedTasksService.getTasksByQuadrant(important, urgent);
-		model.addAttribute("tasks", tasks);
+		QuadrantDTO quadrant = quadrantService.getQuadrant(important, urgent);
+		model.addAttribute("quadrant", quadrant);
 
 		return "onequadrant";
 	}
@@ -86,8 +88,14 @@ public class QuadFourController {
 	 * @return tasks
 	 */
 	@RequestMapping(value="/newtask")
-	public String newTask(Model model) {
+	public String newTask(
+			@RequestParam(value="important", defaultValue ="false") boolean important,
+			@RequestParam(value="urgent", defaultValue ="false") boolean urgent,
+			Model model
+	) {
 		TaskDTO taskDTO = new TaskDTO();
+		taskDTO.setIsHighImportance(important);
+		taskDTO.setIsHighUrgency(urgent);
 		model.addAttribute("task", taskDTO);
 		model.addAttribute("formaction", "/save");
 		return "taskform";

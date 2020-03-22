@@ -3,22 +3,64 @@ PARAMS:
 - title: Title of the Quadrant
 - tasks: Task Array
 -->
-<div th:fragment="quadrant" class="quadrant card">
+<div th:fragment="quadrant" class="quadrant">
 
-    <h2>
-        <a
-            th:href="@{'/quadrant/?important=true&urgent=true'}"
-            th:text="${title}"
-        />
-    </h2>
+    <a
+        class="quadrant-title high"
+        th:if="${quadrant.isHighImportance == true && quadrant.isHighUrgency == true}"
+        th:href="'/quadrant?important=' + ${quadrant.isHighImportance} + '&urgent=' + ${quadrant.isHighUrgency}"
+    >
+        <i class="material-icons high">keyboard_capslock</i>
+        <strong>Important and Urgent</strong>
+    </a>
 
-    <div class="quadrant-task-list list-group">
+
+    <a
+        class="quadrant-title medium"
+        th:if="${!quadrant.isHighImportance  == true && quadrant.isHighUrgency == true}"
+        th:href="'/quadrant?important=' + ${quadrant.isHighImportance} + '&urgent=' + ${quadrant.isHighUrgency}"
+    >
+        <i class="material-icons medium">keyboard_arrow_up</i>
+        <strong>Not Important and Urgent</strong>
+    </a>
+
+
+    <a
+        class="quadrant-title medium"
+        th:if="${quadrant.isHighImportance == true && !quadrant.isHighUrgency == true}"
+        th:href="'/quadrant?important=' + ${quadrant.isHighImportance} + '&urgent=' + ${quadrant.isHighUrgency}"
+    >
+       <i class="material-icons medium">keyboard_arrow_up</i>
+        <strong>Important and Not Urgent</strong>
+    </a>
+
+
+    <a
+        class="quadrant-title low"
+        th:if="${!quadrant.isHighImportance == true && !quadrant.isHighUrgency == true}"
+        th:href="'/quadrant?important=' + ${quadrant.isHighImportance} + '&urgent=' + ${quadrant.isHighUrgency}"
+    >
+        <i class="material-icons low">arrow_drop_up</i>
+        <strong>Not Important and Not Urgent</strong>
+    </a>
+
+    <a th:href="'/newtask?important=' + ${quadrant.isHighImportance} + '&urgent=' + ${quadrant.isHighUrgency}" class='icon-button'>
+        <i class="material-icons">add</i>
+    </a>
+
+    <div th:replace="fragments/nav.html :: divider"></div>
+
+<!--    private Boolean isHighImportance;-->
+<!--    private Boolean isHighUrgency;-->
+
+    <div class="quadrant-list">
         <a
                 href="#"
+                th:each="task : ${quadrant.quadrantTasks}"
                 th:href="'/task?taskId=' + ${task.taskId}"
-                th:each="task : ${tasks}" 
                 th:text="${task.taskText}"
-                class="quadrant-task list-group-item list-group-item-action">
+                class="quadrant-list-item low"
+        >
         </a>
     </div>
 

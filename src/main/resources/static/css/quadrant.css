@@ -1,0 +1,106 @@
+/* QUADRANT */
+
+.quadrant-wrapper {
+    height: calc(100vh);
+    width: calc(100% - 42px);
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row: auto;
+    grid-column-gap: 21px;
+    grid-row-gap: 21px;
+}
+
+.quadrant-wrapper.single-quadrant {
+    height: calc(100vh);
+    width: calc(100% - 42px);
+    margin: auto;
+    grid-template-columns: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.quadrant {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.quadrant .quadrant-title {
+    flex: 0 0 90%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition-duration: 0.25s;
+    color: #2c2c2c;
+    text-decoration: none;
+    height: 55px;
+}
+
+.quadrant .quadrant-title.high .material-icons {
+    color: #f5222d;
+}
+
+.quadrant .quadrant-title.medium .material-icons {
+    color: #fadb14;
+}
+
+.quadrant .quadrant-title.low .material-icons {
+    color: #2f54eb;
+}
+
+.quadrant .quadrant-title:hover {
+    background-color: rgb(227, 226, 223);
+}
+
+.quadrant .icon-button {
+    transition-duration: 0.25s;
+    text-decoration: none;
+    flex: 0 0 10%;
+    display: grid;
+    place-items: center;
+    color: #2c2c2c;
+}
+
+.quadrant-wrapper.single-quadrant .quadrant .icon-button {
+    display: none;
+}
+
+.quadrant .icon-button:hover {
+    background-color: rgb(227, 226, 223);
+}
+
+.quadrant-list {
+    flex: 0 0 100%;
+    height: calc(100% - 57px);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(auto-fill, 89px);
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+}
+
+.quadrant-list-item {
+    background-color: rgb(247, 246, 243);
+    padding: 8px;
+    text-decoration: none;
+    transition-duration: 0.25s;
+    color: #2c2c2c;
+}
+
+.quadrant-list-item:hover {
+    background-color: rgb(227, 226, 223);
+    padding: 8px;
+}
+
+.quadrant .quadrant-title.high ~ .quadrant-list .quadrant-list-item {
+    border-top: 13px solid #f5222d;
+}
+
+.quadrant .quadrant-title.medium ~ .quadrant-list .quadrant-list-item {
+    border-top: 13px solid #fadb14;
+}
+
+.quadrant .quadrant-title.low ~ .quadrant-list .quadrant-list-item {
+    border-top: 13px solid #2f54eb;
+}

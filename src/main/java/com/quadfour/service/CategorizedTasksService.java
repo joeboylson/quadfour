@@ -19,11 +19,4 @@ public class CategorizedTasksService implements ICategorizedTasksService {
         CategorizedTasksDTO categorizedTasks = categorizedTasksDAO.getCategorizedTasks();
         return categorizedTasks;
     };
-
-    @Override
-    public ArrayList<TaskDTO> getTasksByQuadrant(boolean isImportant, boolean isUrgent) {
-        ArrayList<TaskDTO> quadrantTasks = categorizedTasksDAO.getTasksByQuadrant(isImportant, isUrgent);
-        return quadrantTasks;
-    };
-
 }

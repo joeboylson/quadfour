@@ -1,12 +1,10 @@
 package com.quadfour.dao;
 
 import com.quadfour.dto.CategorizedTasksDTO;
+import com.quadfour.dto.QuadrantDTO;
 import com.quadfour.dto.TaskDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 @Component
 public class CategorizedTasksDAO implements ICategorizedTasksDOA {
@@ -18,6 +16,10 @@ public class CategorizedTasksDAO implements ICategorizedTasksDOA {
     public CategorizedTasksDTO getCategorizedTasks() {
 
         Iterable<TaskDTO> allTasks = taskRepository.findAll();
+        QuadrantDTO importantUrgent = new QuadrantDTO(){{ setIsHighImportance(true); setIsHighUrgency(true);}};
+        QuadrantDTO importantNotUrgent = new QuadrantDTO(){{ setIsHighImportance(true); }};
+        QuadrantDTO notImportantUrgent = new QuadrantDTO(){{ setIsHighUrgency(true); }};
+        QuadrantDTO notImportantNotUrgent = new QuadrantDTO();
         CategorizedTasksDTO categorizedTasks = new CategorizedTasksDTO();
 
         allTasks.forEach(task -> {
@@ -27,40 +29,25 @@ public class CategorizedTasksDAO implements ICategorizedTasksDOA {
 
             if (important) {
                 if (urgent) {
-                    categorizedTasks.addImportantUrgent(task);
+                    importantUrgent.addTask(task);
                 } else {
-                    categorizedTasks.addImportantNotUrgent(task);
+                    importantNotUrgent.addTask(task);
                 }
             } else {
                 if (urgent) {
-                    categorizedTasks.addNotImportantUrgent(task);
+                    notImportantUrgent.addTask(task);
                 } else {
-                    categorizedTasks.addNotImportantNotUrgent(task);
+                    notImportantNotUrgent.addTask(task);
                 }
             }
 
         });
 
+        categorizedTasks.setImportantUrgent(importantUrgent);
+        categorizedTasks.setImportantNotUrgent(importantNotUrgent);
+        categorizedTasks.setNotImportantUrgent(notImportantUrgent);
+        categorizedTasks.setNotImportantNotUrgent(notImportantNotUrgent);
+
         return categorizedTasks;
-    }
-
-    @Override
-    public ArrayList<TaskDTO> getTasksByQuadrant(boolean isImportant, boolean isUrgent) {
-
-        Iterable<TaskDTO> allTasks = taskRepository.findAll();
-        ArrayList<TaskDTO> quadrantTasks = new ArrayList<TaskDTO>();
-
-        allTasks.forEach(task -> {
-
-            boolean important = task.getIsHighImportance();
-            boolean urgent = task.getIsHighUrgency();
-
-            if (important == isImportant && urgent == isUrgent) {
-                quadrantTasks.add(task);
-            }
-
-        });
-
-        return quadrantTasks;
     }
 }
