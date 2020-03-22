@@ -19,7 +19,8 @@ NAV FRAGMENTS
 <div th:fragment="add-new" class="nav-item">
     <link th:href="@{/css/nav.css}" rel="stylesheet" />
 
-    <a href="/newtask" class='icon-button'>
+
+    <a th:href="'/newtask' + ${params}" class='icon-button'>
         <i class="material-icons">add</i>
         <p>Add New Task</p>
     </a>

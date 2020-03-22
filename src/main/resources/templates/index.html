@@ -6,9 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quad Four</title>
 
-    <script th:src="@{/js/index.js}"></script>
-    <script th:src="@{/js/quadrant.js}"></script>
-
     <link th:href="@{/css/index.css}" rel="stylesheet" />
     <link th:href="@{/css/quadrant.css}" rel="stylesheet" />
 
@@ -25,9 +22,8 @@
             <div th:replace="fragments/nav.html :: workspace-banner(username='Username')"></div>
             <div th:replace="fragments/nav.html :: search-modal"></div>
             <div th:replace="fragments/nav.html :: divider"></div>
-            <div th:replace="fragments/nav.html :: add-new"></div>
+            <div th:replace="fragments/nav.html :: add-new(params='')"></div>
         </div>
-
     </nav>
 
     <main>

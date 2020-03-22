@@ -18,7 +18,8 @@
 }
 
 .nav-item .icon-button {
-    padding: 13px 13px;
+    padding: 0px 13px;
+    height: 55px;
     display: flex;
     align-items: center;
     text-decoration: none;

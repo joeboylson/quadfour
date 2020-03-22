@@ -6,23 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quad Four</title>
 
-    <!-- index scripts -->
-    <script th:src="@{/js/index.js}"></script>
-
-    <!-- index styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/quadrant.css}" rel="stylesheet" />
 </head>
 <body>
 
-<nav>
-    <div th:replace="fragments/nav.html :: add-new"></div>
-</nav>
+    <nav>
+        <div id="nav-content">
+            <div th:replace="fragments/nav.html :: workspace-banner(username='Username')"></div>
+            <div th:replace="fragments/nav.html :: search-modal"></div>
+            <div th:replace="fragments/nav.html :: divider"></div>
+            <div th:replace="fragments/nav.html :: add-new(params='?important=' + ${quadrant.isHighImportance} + '&urgent=' + ${quadrant.isHighUrgency})"></div>
+        </div>
+    </nav>
 
     <main>
 
-        <div class="quadrant-wrapper">
-            <!-- TODO: make the title dynamic -->
+        <div class="quadrant-wrapper single-quadrant">
             <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${quadrant})"></div>
         </div>
 
