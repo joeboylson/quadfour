@@ -50,3 +50,55 @@ NAV FRAGMENTS
 <div th:fragment="divider" class="nav-item divider">
     <hr />
 </div>
+
+
+
+<!-- EDIT -->
+<div th:fragment="edit-task" class="nav-item">
+    <link th:href="@{/css/nav.css}" rel="stylesheet" />
+
+    <a href="#" th:href="'/updatetask?taskId=' + ${id}" class='icon-button'>
+        <i class="material-icons">edit</i>
+        <p>Edit Task</p>
+    </a>
+</div>
+
+
+
+<!-- DUPLICATE -->
+<div th:fragment="duplicate-task" class="nav-item">
+    <link th:href="@{/css/nav.css}" rel="stylesheet" />
+
+    <a href="#" th:href="'/duplicatetask?taskId=' + ${id}" class='icon-button'>
+        <i class="material-icons">content_copy</i>
+        <p>Duplicate Task</p>
+    </a>
+</div>
+
+
+
+<!-- DELETE -->
+<div th:fragment="delete-task" class="nav-item">
+    <link th:href="@{/css/nav.css}" rel="stylesheet" />
+
+    <a href="#" th:href="'/deletetask?taskId=' + ${id}" class='icon-button'>
+        <i class="material-icons">delete</i>
+        <p>Delete Task</p>
+    </a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

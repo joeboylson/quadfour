@@ -18,6 +18,9 @@
             <div th:replace="fragments/nav.html :: search-modal"></div>
             <div th:replace="fragments/nav.html :: divider"></div>
             <div th:replace="fragments/nav.html :: add-new(params='')"></div>
+            <div th:replace="fragments/nav.html :: edit-task(id=${task.taskId})"></div>
+            <div th:replace="fragments/nav.html :: duplicate-task(id=${task.taskId})"></div>
+            <div th:replace="fragments/nav.html :: delete-task(id=${task.taskId})"></div>
         </div>
     </nav>
 
@@ -45,11 +48,6 @@
                     <div class="status-box" th:classappend="${task.isHighUrgency} ? checked : ''"></div>
                 </div>
             </div>
-
-    <!--TODO: move to nav-->
-    <!--        <a href="#" th:href="'/updatetask?taskId=' + ${task.taskId}">Update</a> <br/>-->
-    <!--        <a href="#" th:href="'/duplicatetask?taskId=' + ${task.taskId}">Duplicate</a> <br/>-->
-    <!--        <a href="#" th:href="'/deletetask?taskId=' + ${task.taskId}">Delete</a>-->
 
         </div>
 
