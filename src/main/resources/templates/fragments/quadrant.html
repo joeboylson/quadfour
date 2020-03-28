@@ -50,16 +50,24 @@ PARAMS:
 
     <div th:replace="fragments/nav.html :: divider"></div>
 
-<!--    private Boolean isHighImportance;-->
-<!--    private Boolean isHighUrgency;-->
+    <div
+            class="quadrant-list"
+            ondrop="drop(event)"
+            ondragover="allowDrop(event)"
+            th:attr="data-isHighImportance=${quadrant.isHighImportance}, data-isHighUrgency=${quadrant.isHighUrgency}"
+    >
 
-    <div class="quadrant-list">
         <a
                 href="#"
                 th:each="task : ${quadrant.quadrantTasks}"
+                th:id="'task-' + ${task.taskId}"
                 th:href="'/task?taskId=' + ${task.taskId}"
                 th:text="${task.taskText}"
                 class="quadrant-list-item low"
+                ondragstart="dragStart(event)"
+                ondragend="dragEnd(event)"
+                th:draggable="${tasksAreDraggable} "
+                th:attr="data-taskId=${task.taskId}"
         >
         </a>
     </div>

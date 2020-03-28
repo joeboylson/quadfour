@@ -9,6 +9,9 @@
     <link th:href="@{/css/index.css}" rel="stylesheet" />
     <link th:href="@{/css/quadrant.css}" rel="stylesheet" />
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script th:src="@{/js/index.js}"></script>
+
 </head>
 <body>
 
@@ -24,10 +27,10 @@
     <main>
 
         <div class="quadrant-wrapper">
-            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${importantUrgent})"></div>
-            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${importantNotUrgent})"></div>
-            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${notImportantUrgent})"></div>
-            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${notImportantNotUrgent})"></div>
+            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${importantUrgent}, tasksAreDraggable=true)"></div>
+            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${importantNotUrgent}, tasksAreDraggable=true)"></div>
+            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${notImportantUrgent}, tasksAreDraggable=true)"></div>
+            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${notImportantNotUrgent}, tasksAreDraggable=true)"></div>
         </div>
 
     </main>

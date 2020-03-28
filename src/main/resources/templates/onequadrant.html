@@ -23,7 +23,7 @@
     <main>
 
         <div class="quadrant-wrapper single-quadrant">
-            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${quadrant})"></div>
+            <div th:replace="fragments/quadrant.html :: quadrant(quadrant=${quadrant}, tasksAreDraggable=false)"></div>
         </div>
 
     </main>
