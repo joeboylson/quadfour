@@ -1,6 +1,6 @@
 # Quad Four
 
-**Context:** School Project for _Enterprose Application Development_ (University of Cincinnati - Spring 2020)
+**Context:** School Project for _Enterprise Application Development_ (University of Cincinnati - Spring 2020)
 
 **Collaborators:** Joe Boylson, Aaron Zorzi, Hunter Holland 
 
@@ -16,8 +16,12 @@ In this way, the user is easily able to prioritize their tasks, getting the most
 
 1. Clone this repo
 
-2. Open up in Jetbrains IDE
+2. Open up in IDE of your choice.
 
-3. Navigate to `\src\main\java\com\quadfour`
+3. View the `docker_mysql.md` documentation for the necessary Docker setup.
 
-4. Run `QuadFourApplication.java`
+3. Navigate to `\src\main\java\com\quadfour`.
+
+4. Run `QuadFourApplication.java`.
+
+5. Navigate to http://localhost:8080/ to view project.

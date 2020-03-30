@@ -1,10 +1,8 @@
 # SET UP MYSQL WITH DOCKER:
 
-This is an alternative to using the LAMP stack and should not give any different results.
+This is an alternative way of using the LAMP stack and should not give any different results.
 
-The application should not have to change (don't use this method if it has to) because a database is a database - whether its running with LAMP or Docker.
-
-I prefer this method because I already had Docker and MySQL workbench installed and I had used this method for a previous project. I thought it was pointless to download another piece of software.
+I prefer this method because I already had Docker and MySQL workbench installed and I had used this method for a previous project.
 
 ---
 
@@ -22,25 +20,46 @@ I prefer this method because I already had Docker and MySQL workbench installed 
 Once Docker is installed _and running_, enter this command in your terminal:
 
 ```
-docker run --name quadfour_mysql -e MYSQL_ROOT_PASSWORD=password -p 3306:3306 -d mysql:latest
+docker run --detach --name quadfour_mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=tasks -p 3306:3306 -e MYSQL_USER=tasks_user -e MYSQL_PASSWORD=password -d mysql:latest
 ```
+`--detach`: Runs the docker container in the background of your terminal.
 
-`--name quadfour_mysql` : the name of the container (change this if you want)
+`--name quadfour_mysql` : The name of the container (change this if you want).
 
-`-e MYSQL_ROOT_PASSWORD=password` : the database password
+`-e MYSQL_ROOT_PASSWORD=password` : The database password.
 
-`-p 3306:3306` : the port that will be exposed. If you need a different port, use `XXXX:3306`
+`-e MYSQL_DATABASE=tasks`: Creates the tasks database which our application will write to.
 
-`d mysql:latest` : the version of mysql
+`-p 3306:3306` : The port that will be exposed. If you need a different port, use `XXXX:3306`
+
+`-e MYSQL_USER=tasks_user`: Creates a MySQL user named tasks_user.
+
+`-e MYSQL_PASSWORD=password`: Provides the tasks_user with a password.
+
+`-d mysql:latest` : Version of MySQL.
 
 ---
 
 ### Connecting
 
-After you run the command, you should be able to connect as usual. The database will be open on localhost:3306 (or whatever port you chose).
+Once your database is up and running, you can link it to phpMyAdmin to view the data in a GUI.
+
+```
+docker run --name myadmin -d --link quadfour_mysql:db -p 8181:80 phpmyadmin/phpmyadmin 
+```
+
+`--link quadfour_mysql:db`: Links the previously created MySQL container with our new phpMyAdmin container.
+
+`phpmyadmin/phpmyadmin`: Pulls the phpMyAdmin image from Docker Hub.
+
+Navigate to http://localhost:8181/, and you will be able to view the database in phpMyAdmin.
+
+###Other Connection Options
+
+If you would rather view the database in another tool, it will be open on localhost:3306 (or whatever port you chose).
 
 Open it in MySQL Workbench or something!
 
 ---
 
-::: &nbsp; Joe Boylson
+::: &nbsp; Joe Boylson and Hunter Holland
