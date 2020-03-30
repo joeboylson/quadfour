@@ -23,3 +23,5 @@ In this way, the user is easily able to prioritize their tasks, getting the most
 3. Navigate to `\src\main\java\com\quadfour`.
 
 4. Run `QuadFourApplication.java`.
+
+5. Navigate to http://localhost:8080/ to view project.
