@@ -15,7 +15,7 @@
     <nav>
         <div id="nav-content">
             <div th:replace="fragments/nav.html :: workspace-banner(username='Username')"></div>
-            <div th:replace="fragments/nav.html :: search-modal"></div>
+            
         </div>
     </nav>
 
@@ -56,6 +56,11 @@
             <div class="task-field">
                 <div class="button">
                     <input type="submit" value="Save"/>
+                </div>
+            </div>
+            <div class="task-field">
+                <div class="button">
+                    <input type="button" value="Cancel"/>
                 </div>
             </div>
 

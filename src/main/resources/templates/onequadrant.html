@@ -14,7 +14,7 @@
     <nav>
         <div id="nav-content">
             <div th:replace="fragments/nav.html :: workspace-banner(username='Username')"></div>
-            <div th:replace="fragments/nav.html :: search-modal"></div>
+            
             <div th:replace="fragments/nav.html :: divider"></div>
             <div th:replace="fragments/nav.html :: add-new(params='?important=' + ${quadrant.isHighImportance} + '&urgent=' + ${quadrant.isHighUrgency})"></div>
         </div>
