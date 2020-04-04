@@ -67,7 +67,7 @@ PARAMS:
                 ondragstart="dragStart(event)"
                 ondragend="dragEnd(event)"
                 th:draggable="${tasksAreDraggable} "
-                th:attr="data-taskId=${task.taskId}"
+                th:attr="data-taskId=${task.taskId}, data-taskText=${task.taskText}"
         >
         </a>
     </div>
