@@ -72,13 +72,21 @@
 .quadrant-list {
     flex: 0 0 100%;
     height: calc(100% - 57px);
-
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: repeat(auto-fill, 89px);
     grid-column-gap: 8px;
     grid-row-gap: 8px;
+    transition-duration: 0.25s;
 }
+
+/*DRAGGING OVER*/
+.dragging-over {
+    -webkit-box-shadow: inset 0px 0px 0px 8px rgba(47,84,235,0.5);
+    -moz-box-shadow: inset 0px 0px 0px 8px rgba(47,84,235,0.5);
+    box-shadow: inset 0px 0px 0px 8px rgba(47,84,235,0.5);
+}
+
 
 .quadrant-list-item {
     background-color: rgb(247, 246, 243);
