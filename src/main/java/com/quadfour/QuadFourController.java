@@ -78,7 +78,7 @@ public class QuadFourController {
 
     	// TODO: add in route/behavior for "/task" without "taskId" parameter
 
-    	TaskDTO taskDTO = taskService.fetchById(taskId);
+    	TaskDTO taskDTO = taskService.fetchTaskById(taskId);
     	model.addAttribute("task", taskDTO);
         return "task";
     }
@@ -108,7 +108,7 @@ public class QuadFourController {
 	@RequestMapping(value="/duplicatetask")
 	public String duplicateTask(@RequestParam(value="taskId", defaultValue = "0") Integer taskId, Model model) {
 
-		TaskDTO taskDTO = taskService.fetchById(taskId);
+		TaskDTO taskDTO = taskService.fetchTaskById(taskId);
 		taskDTO.setTaskId(0);
 		model.addAttribute("task", taskDTO);
 		model.addAttribute("formaction", "/save");
@@ -122,7 +122,7 @@ public class QuadFourController {
 	@RequestMapping(value="/updatetask")
 	public String updateTask(@RequestParam(value="taskId", defaultValue = "0") Integer taskId, Model model) {
 
-		TaskDTO taskDTO = taskService.fetchById(taskId);
+		TaskDTO taskDTO = taskService.fetchTaskById(taskId);
 		model.addAttribute("task", taskDTO);
 		model.addAttribute("formaction", "/save?taskId=" + taskId);
 		return "taskform";
@@ -134,7 +134,7 @@ public class QuadFourController {
 	 */
 	@RequestMapping(value="/deletetask")
 	public String deleteTask(@RequestParam(value="taskId", defaultValue = "0") Integer taskId) {
-		taskService.deleteById(taskId);
+		taskService.deleteTaskById(taskId);
 		return "redirect:/";
 	}
 
@@ -145,7 +145,7 @@ public class QuadFourController {
 	// =================================================================================================================
 
 	@PostMapping(value="/save")
-	public String save(
+	public String saveTask(
 			@RequestParam(value="taskId", defaultValue = "0") Integer taskId,
 			TaskDTO task,
 			RedirectAttributes redirectAttributes) {
@@ -153,7 +153,7 @@ public class QuadFourController {
     	try{
 
     		task.setTaskId(taskId);
-			TaskDTO savedTask = taskService.save(task);
+			TaskDTO savedTask = taskService.saveTask(task);
 			System.out.println(savedTask);
 
 			redirectAttributes.addAttribute("taskId", savedTask.getTaskId());
