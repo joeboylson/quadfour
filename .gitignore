@@ -33,3 +33,5 @@ build/
 QuadFour.eml
 QuadFour.userlibraries
 src/main/resources/ref
+src/main/resources/application.properties
+src/main/resources/application.properties

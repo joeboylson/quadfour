@@ -18,7 +18,7 @@ import com.quadfour.service.ITaskService;
 @SpringBootTest
 public class TaskServiceTest {
 
-    @Qualifier("taskServiceStub")
+    
     @Autowired
     ITaskService taskService;
 
@@ -47,12 +47,6 @@ public class TaskServiceTest {
         // thenMyPlantDiaryReturnsZeroResults();
     }
 
-    @Test
-    public void fetchPlants_validateResultsForCercis() throws Exception {
-        givenUserIsLoggedInToQuadFour();
-        // whenTheUserSearchesForCercis();
-        // thenMyPlantDiaryReturnsEasternRedbud();
-    }
 
 
 
