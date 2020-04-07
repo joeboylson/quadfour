@@ -1,11 +1,4 @@
-console.log('::: INDEX.JS')
-
-const openModal = () => {
-    console.log('OPEN MODAL')
-}
-
-
-
+// INDEX.JS
 
 
 // DRAG AND DROP
@@ -58,7 +51,13 @@ const allowDrop = (event) => {
 
     if (!hasDraggingOverClass) {
         removeAllDraggingOverClass();
-        event.target.classList.add('dragging-over')
+
+        // if hovering over a task element, add class to parent
+        if (event.target.classList.contains('quadrant-list-item')) {
+            return event.target.parentElement.classList.add('dragging-over')
+        }
+
+        return event.target.classList.add('dragging-over')
     }
 }
 
