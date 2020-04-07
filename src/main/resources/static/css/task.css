@@ -14,6 +14,15 @@
     text-align: left;
 }
 
+.task-wrapper .task-field.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-wrapper .task-field.button-group .button {
+    flex: 0 0 30%;
+}
+
 /* TEXT AREA */
 
 .textarea {
@@ -115,4 +124,10 @@
 
 .button input:hover {
     background-color: #1b41d7;
+}
+
+.button input.ghost {
+    background-color: transparent !important;
+    color: #2f54eb;
+    border: 1px solid #2F54EC;
 }
