@@ -1,23 +1,13 @@
-/* IMPORT ROBOTO AND ROBOTO CONDENSED */
+/* IMPORT ROBOTO, ROBOTO CONDENSED, AND MATERIAL ICONS */
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+/* FONT */
 
-
-                                                                                       /* FONT */
-
-/*
-P.S.
-Using fibonacci series for font size and line height.
-I thing it looks really good.
-Joe
-
-[ 13, 21, 34, 55, 89 ]
-*/
-
+/* default font style */
 * {
-  /* default font style */
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
   line-height: 21px;
