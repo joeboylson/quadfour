@@ -12,21 +12,21 @@ public interface ITaskService {
 	 * @param id
 	 * @return taskDTO
 	 */
-	TaskDTO fetchTaskById(int id);
+	TaskDTO fetchById(int id);
 
 	/**
 	 * Save New Task
 	 * @param taskDTO
 	 * @return
 	 */
-	TaskDTO saveTask(TaskDTO taskDTO) throws Exception;
+	TaskDTO save(TaskDTO taskDTO) throws Exception;
 
 	/**
 	 * Fetch By Id
 	 * @param id
 	 * @return taskDTO
 	 */
-	void deleteTaskById(int id);
+	void deleteById(int id);
 
 	/**
 	 * Save New Task

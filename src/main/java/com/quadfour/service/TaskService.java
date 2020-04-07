@@ -15,19 +15,19 @@ public class TaskService implements ITaskService {
     ITaskDAO taskDAO;
 
     @Override
-    public TaskDTO fetchTaskById(int id) {
+    public TaskDTO fetchById(int id) {
         TaskDTO fetchedTask = taskDAO.fetchTaskByTaskId(id);
         return fetchedTask;
     }
 
     @Override
-    public TaskDTO saveTask(TaskDTO taskDTO) throws Exception {
+    public TaskDTO save(TaskDTO taskDTO) throws Exception {
         TaskDTO savedTask = taskDAO.save(taskDTO);
         return savedTask;
     }
 
     @Override
-    public void deleteTaskById(int id) {
+    public void deleteById(int id) {
         taskDAO.deleteTaskByTaskId(id);
     }
 

@@ -7,7 +7,14 @@
 
                                                                                        /* FONT */
 
+/*
+P.S.
+Using fibonacci series for font size and line height.
+I thing it looks really good.
+Joe
 
+[ 13, 21, 34, 55, 89 ]
+*/
 
 * {
   /* default font style */
