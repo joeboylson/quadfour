@@ -1,14 +1,13 @@
 package com.quadfour.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="USERS")
 public class UserDTO {
+    
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="USER_ID")
     private long id;
     @Column(name="USERNAME")

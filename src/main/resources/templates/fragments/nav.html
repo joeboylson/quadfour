@@ -8,7 +8,7 @@ NAV FRAGMENTS
 
     <a href="/" class='icon-button'>
         <p class="username-icon" th:text="${#strings.substring(username,0,1)}"></p>
-        <p th:text="${username + '''s Workspace'}"></p>
+        <p th:inline="text">[[${#httpServletRequest.remoteUser}]]'s Workspace</p>
     </a>
 
 </div>

@@ -1,14 +1,16 @@
 package com.quadfour;
 import com.quadfour.dto.QuadrantDTO;
+import com.quadfour.dto.UserDTO;
 import com.quadfour.service.ICategorizedTasksService;
 import com.quadfour.service.IQuadrantService;
+import com.quadfour.service.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.ArrayList;
 
 import com.quadfour.dto.TaskDTO;
 import com.quadfour.dto.CategorizedTasksDTO;
@@ -16,6 +18,8 @@ import com.quadfour.dto.CategorizedTasksDTO;
 import com.quadfour.service.ITaskService;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.security.Principal;
 
 
 @Controller
@@ -30,6 +34,9 @@ public class QuadFourController {
 	@Autowired
 	private ICategorizedTasksService categorizedTasksService;
 
+	@Autowired
+	private UserDetailsService userDetailsService;
+
 
 
 	// =================================================================================================================
@@ -41,8 +48,10 @@ public class QuadFourController {
 	 * @return index.html
 	 */
     @RequestMapping(value="/")
-    public String index(Model model) {
-
+    public String index(
+    		Principal principal,
+    		Model model
+	) {
 		CategorizedTasksDTO categorizedTasks = categorizedTasksService.getCategorizedTasks();
 		model.addAttribute("importantUrgent", categorizedTasks.getImportantUrgent());
 		model.addAttribute("importantNotUrgent", categorizedTasks.getImportantNotUrgent());
@@ -138,6 +147,29 @@ public class QuadFourController {
 		return "redirect:/";
 	}
 
+	/**
+	 * '/login'
+	 * @return login page
+	 */
+	@RequestMapping(value="/login")
+	public String login(Model model) {
+		UserDTO user = new UserDTO();
+
+		model.addAttribute("user", user);
+		return "login";
+	}
+
+	/**
+	 * '/register'
+	 * @return register page
+	 */
+	@RequestMapping(value="/register")
+	public String register(Model model) {
+		UserDTO user = new UserDTO();
+
+		model.addAttribute("user", user);
+		return "register";
+	}
 
 
 	// =================================================================================================================
@@ -158,6 +190,25 @@ public class QuadFourController {
 
 			redirectAttributes.addAttribute("taskId", savedTask.getTaskId());
 			return "redirect:task";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("there was an error");
+		}
+
+		return "redirect:/";
+	}
+
+	@PostMapping(value="/register")
+	public String save(
+			UserDTO user,
+			RedirectAttributes redirectAttributes) {
+		try{
+
+			UserDetails registeredUser = userDetailsService.register(user);
+			System.out.println(registeredUser);
+
+			return "redirect:/";
 
 		} catch (Exception e) {
 			e.printStackTrace();
