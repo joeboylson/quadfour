@@ -8,5 +8,5 @@ import java.util.ArrayList;
 
 @Service
 public interface IQuadrantService {
-    QuadrantDTO getQuadrant(boolean isImportant, boolean isUrgent);
+    QuadrantDTO getQuadrant(boolean isImportant, boolean isUrgent, int userId);
 }

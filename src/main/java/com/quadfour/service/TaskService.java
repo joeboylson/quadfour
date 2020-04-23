@@ -15,19 +15,34 @@ public class TaskService implements ITaskService {
     ITaskDAO taskDAO;
 
     @Override
-    public TaskDTO fetchById(int id) {
+    public TaskDTO fetchById(int id, int userId) {
         TaskDTO fetchedTask = taskDAO.fetchTaskByTaskId(id);
+
+        // make sure the user owns the task
+        if ( fetchedTask == null || !(fetchedTask.getUserId() == userId)) {
+            return null;
+        }
+
         return fetchedTask;
     }
 
     @Override
-    public TaskDTO save(TaskDTO taskDTO) throws Exception {
+    public TaskDTO save(TaskDTO taskDTO, int userId) throws Exception {
+        taskDTO.setUserId(userId);
         TaskDTO savedTask = taskDAO.save(taskDTO);
         return savedTask;
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(int id, int userId) {
+
+        TaskDTO toDeleteTask = taskDAO.fetchTaskByTaskId(id);
+
+        // make sure the user owns the task
+        if ( toDeleteTask == null || !(toDeleteTask.getUserId() == userId)) {
+            return;
+        }
+
         taskDAO.deleteTaskByTaskId(id);
     }
 

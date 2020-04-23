@@ -1,25 +1,23 @@
 package com.quadfour;
 import com.quadfour.dto.QuadrantDTO;
-import com.quadfour.service.ICategorizedTasksService;
-import com.quadfour.service.IQuadrantService;
+import com.quadfour.dto.UserDTO;
+import com.quadfour.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.ArrayList;
-
 import com.quadfour.dto.TaskDTO;
 import com.quadfour.dto.CategorizedTasksDTO;
-
-import com.quadfour.service.ITaskService;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import java.security.Principal;
 
 @Controller
 public class QuadFourController {
+
+	@Autowired
+	private IUserService userService;
 
 	@Autowired
 	private ITaskService taskService;
@@ -29,6 +27,15 @@ public class QuadFourController {
 
 	@Autowired
 	private ICategorizedTasksService categorizedTasksService;
+
+	@Autowired
+	private UserDetailsService userDetailsService;
+
+	private UserDTO getUserFromPrincipal(Principal principal) {
+		String username = principal.getName();
+		UserDTO user = userService.findByUsername(username);
+		return user;
+	}
 
 
 
@@ -41,9 +48,11 @@ public class QuadFourController {
 	 * @return index.html
 	 */
     @RequestMapping(value="/")
-    public String index(Model model) {
+    public String index(Principal principal, Model model) {
 
-		CategorizedTasksDTO categorizedTasks = categorizedTasksService.getCategorizedTasks();
+    	UserDTO activeUser = getUserFromPrincipal(principal);
+		CategorizedTasksDTO categorizedTasks = categorizedTasksService.getCategorizedTasks( activeUser.getId() );
+
 		model.addAttribute("importantUrgent", categorizedTasks.getImportantUrgent());
 		model.addAttribute("importantNotUrgent", categorizedTasks.getImportantNotUrgent());
 		model.addAttribute("notImportantUrgent", categorizedTasks.getNotImportantUrgent());
@@ -60,10 +69,12 @@ public class QuadFourController {
 	public String quadrant(
 			@RequestParam(value="important", defaultValue ="false") boolean important,
 			@RequestParam(value="urgent", defaultValue ="false") boolean urgent,
-			Model model
+			Model model,
+			Principal principal
 	) {
 
-		QuadrantDTO quadrant = quadrantService.getQuadrant(important, urgent);
+		UserDTO activeUser = getUserFromPrincipal(principal);
+		QuadrantDTO quadrant = quadrantService.getQuadrant(important, urgent, activeUser.getId());
 		model.addAttribute("quadrant", quadrant);
 
 		return "onequadrant";
@@ -74,11 +85,14 @@ public class QuadFourController {
 	 * @return tasks
 	 */
     @RequestMapping(value="/task")
-    public String task(@RequestParam(value="taskId") Integer taskId, Model model) {
+    public String task(
+    		@RequestParam(value="taskId") Integer taskId,
+			Model model,
+			Principal principal
+	) {
 
-    	// TODO: add in route/behavior for "/task" without "taskId" parameter
-
-    	TaskDTO taskDTO = taskService.fetchById(taskId);
+		UserDTO activeUser = getUserFromPrincipal(principal);
+    	TaskDTO taskDTO = taskService.fetchById(taskId, activeUser.getId());
     	model.addAttribute("task", taskDTO);
         return "task";
     }
@@ -106,9 +120,14 @@ public class QuadFourController {
 	 * @return tasks
 	 */
 	@RequestMapping(value="/duplicatetask")
-	public String duplicateTask(@RequestParam(value="taskId", defaultValue = "0") Integer taskId, Model model) {
+	public String duplicateTask(
+			@RequestParam(value="taskId", defaultValue = "0") Integer taskId,
+			Model model,
+			Principal principal
+	) {
 
-		TaskDTO taskDTO = taskService.fetchById(taskId);
+		UserDTO activeUser = getUserFromPrincipal(principal);
+		TaskDTO taskDTO = taskService.fetchById(taskId, activeUser.getId());
 		taskDTO.setTaskId(0);
 		model.addAttribute("task", taskDTO);
 		model.addAttribute("formaction", "/save");
@@ -120,9 +139,14 @@ public class QuadFourController {
 	 * @return tasks
 	 */
 	@RequestMapping(value="/updatetask")
-	public String updateTask(@RequestParam(value="taskId", defaultValue = "0") Integer taskId, Model model) {
+	public String updateTask(
+			@RequestParam(value="taskId", defaultValue = "0") Integer taskId,
+			Model model,
+			Principal principal
+	) {
 
-		TaskDTO taskDTO = taskService.fetchById(taskId);
+		UserDTO activeUser = getUserFromPrincipal(principal);
+		TaskDTO taskDTO = taskService.fetchById(taskId, activeUser.getId());
 		model.addAttribute("task", taskDTO);
 		model.addAttribute("formaction", "/save?taskId=" + taskId);
 		return "taskform";
@@ -133,11 +157,37 @@ public class QuadFourController {
 	 * @return tasks
 	 */
 	@RequestMapping(value="/deletetask")
-	public String deleteTask(@RequestParam(value="taskId", defaultValue = "0") Integer taskId) {
-		taskService.deleteById(taskId);
+	public String deleteTask(@RequestParam(value="taskId", defaultValue = "0") Integer taskId, Principal principal) {
+		UserDTO activeUser = getUserFromPrincipal(principal);
+		taskService.deleteById(taskId, activeUser.getId());
 		return "redirect:/";
 	}
 
+	/**
+	 * '/login'
+	 * @return login page
+	 */
+	@RequestMapping(value="/login")
+	public String login(Model model) {
+		UserDTO user = new UserDTO();
+
+		model.addAttribute("user", user);
+		return "login";
+	}
+
+	/**
+	 * '/register'
+	 * @return register page
+	 */
+	@RequestMapping(value="/register")
+	public String register(Model model) {
+		UserDTO user = new UserDTO();
+		String confirmPassword = "";
+
+		model.addAttribute("user", user);
+		model.addAttribute("confirmPassword", confirmPassword);
+		return "register";
+	}
 
 
 	// =================================================================================================================
@@ -148,17 +198,49 @@ public class QuadFourController {
 	public String save(
 			@RequestParam(value="taskId", defaultValue = "0") Integer taskId,
 			TaskDTO task,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes,
+			Principal principal
+	) {
 
     	try{
+			UserDTO activeUser = getUserFromPrincipal(principal);
 
     		task.setTaskId(taskId);
-			TaskDTO savedTask = taskService.save(task);
+			TaskDTO savedTask = taskService.save(task, activeUser.getId());
 			System.out.println(savedTask);
 
 			redirectAttributes.addAttribute("taskId", savedTask.getTaskId());
 			return "redirect:task";
 
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("there was an error");
+		}
+
+		return "redirect:/";
+	}
+
+	@PostMapping(value="/register")
+	public String save(
+			UserDTO user,
+			String confirmPassword,
+			RedirectAttributes redirectAttributes
+	) {
+		try{
+
+
+			System.out.println("=====================================================================================");
+			System.out.println(user.getPassword());
+			System.out.println(confirmPassword);
+			System.out.println(user.getPassword().equals(confirmPassword));
+
+			if ( user.getPassword().equals(confirmPassword) ) {
+				userDetailsService.register(user);
+				return "redirect:/";
+			}
+
+			redirectAttributes.addAttribute("message", "Passwords do not match");
+			return "redirect:/register";
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("there was an error");

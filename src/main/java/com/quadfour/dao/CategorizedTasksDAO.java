@@ -3,8 +3,13 @@ package com.quadfour.dao;
 import com.quadfour.dto.CategorizedTasksDTO;
 import com.quadfour.dto.QuadrantDTO;
 import com.quadfour.dto.TaskDTO;
+import com.quadfour.dto.UserDTO;
+import com.quadfour.service.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class CategorizedTasksDAO implements ICategorizedTasksDOA {
@@ -12,10 +17,18 @@ public class CategorizedTasksDAO implements ICategorizedTasksDOA {
     @Autowired
     TaskRepository taskRepository;
 
-    @Override
-    public CategorizedTasksDTO getCategorizedTasks() {
+    @Autowired
+    UserRepository userRepository;
 
-        Iterable<TaskDTO> allTasks = taskRepository.findAll();
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Override
+    public CategorizedTasksDTO getCategorizedTasks(int userId) {
+
+        UserDTO user = userRepository.findByUserId(userId);
+        List<TaskDTO> allTasks = user.getUserTasks();
+
         QuadrantDTO importantUrgent = new QuadrantDTO(){{ setIsHighImportance(true); setIsHighUrgency(true);}};
         QuadrantDTO importantNotUrgent = new QuadrantDTO(){{ setIsHighImportance(true); }};
         QuadrantDTO notImportantUrgent = new QuadrantDTO(){{ setIsHighUrgency(true); }};

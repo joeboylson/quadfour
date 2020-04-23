@@ -1,5 +1,24 @@
 // INDEX.JS
 
+// PASSWORD CONFIRMATION
+
+const handleChange = () => {
+    console.log('HANDLE CHANGE')
+
+    let passwordField = document.getElementById("password");
+    let confirmPasswordField = document.getElementById("confirm-password");
+
+    if (!passwordField || !confirmPasswordField) {
+        return console.log('FIELDS NOT AVAILABLE')
+    }
+
+    console.log(
+        passwordField.value,
+        confirmPasswordField.value
+    )
+}
+
+
 
 // DRAG AND DROP
 

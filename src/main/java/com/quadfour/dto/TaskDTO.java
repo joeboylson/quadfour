@@ -1,10 +1,9 @@
 package com.quadfour.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
+@Table(name="TASKS")
 public class TaskDTO {
 	
 	/*
@@ -13,11 +12,17 @@ public class TaskDTO {
 	 * - in GUI > select all > set "insert point" to after "isHighUrgency" (or last attr.) 
 	 */
 	@Id
-	@GeneratedValue(strategy =GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="TASK_ID")
 	private int taskId;
+	@Column(name="TASK_TEXT")
 	private String taskText;
+	@Column(name="IS_HIGH_IMPORTANCE")
 	private Boolean isHighImportance;
+	@Column(name="IS_HIGH_URGENCY")
 	private Boolean isHighUrgency;
+	@Column(name="userId")
+	private int userId;
 	
 	public int getTaskId() {
 		return taskId;
@@ -49,6 +54,14 @@ public class TaskDTO {
 	
 	public void setIsHighUrgency(Boolean isHighUrgency) {
 		this.isHighUrgency = isHighUrgency;
+	}
+
+	public Integer getUserId() {
+		return this.userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 	
 	@Override

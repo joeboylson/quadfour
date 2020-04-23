@@ -15,8 +15,8 @@ public class CategorizedTasksService implements ICategorizedTasksService {
     CategorizedTasksDAO categorizedTasksDAO;
 
     @Override
-    public CategorizedTasksDTO getCategorizedTasks() {
-        CategorizedTasksDTO categorizedTasks = categorizedTasksDAO.getCategorizedTasks();
+    public CategorizedTasksDTO getCategorizedTasks(int userId) {
+        CategorizedTasksDTO categorizedTasks = categorizedTasksDAO.getCategorizedTasks(userId);
         return categorizedTasks;
     };
 }

@@ -12,8 +12,8 @@ public class QuadrantService implements IQuadrantService {
     QuadrantDAO quadrantDAO;
 
     @Override
-    public QuadrantDTO getQuadrant(boolean isImportant, boolean isUrgent) {
-        QuadrantDTO quadrant = quadrantDAO.getQuadrant(isImportant, isUrgent);
+    public QuadrantDTO getQuadrant(boolean isImportant, boolean isUrgent, int userId) {
+        QuadrantDTO quadrant = quadrantDAO.getQuadrant(isImportant, isUrgent, userId);
         return quadrant;
     };
 

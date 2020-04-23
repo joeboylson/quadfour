@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/loginregister.css}" rel="stylesheet" />
+
+    <script th:src="@{/js/index.js}"></script>
+</head>
+<body>
+
+<div class="center-form">
+
+    <form
+            action="/register"
+            th:object="${user}"
+            method="POST"
+            enctype="multipart/form-data"
+    >
+
+        <h2>Register</h2>
+        <!-- TODO: add second password field and validate -->
+
+        <div class="field">
+            <label>Username</label>
+            <input type="text" name="username" th:field="*{username}"></input>
+        </div>
+
+        <div class="field">
+            <label>Password</label>
+            <input id="password" type="password" name="password" th:field="*{password}"></input>
+        </div>
+
+        <div class="field">
+            <label>Confirm Password</label>
+            <input id="password-confirm" type="password" name="confirmPassword" th:value="${confirmPassword}"></input>
+        </div>
+
+        <div class="button-group">
+            <div class="button">
+                <input type="submit" value="Register"/>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
