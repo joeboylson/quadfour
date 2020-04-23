@@ -8,5 +8,5 @@ import java.util.ArrayList;
 
 @Service
 public interface ICategorizedTasksService {
-    CategorizedTasksDTO getCategorizedTasks();
+    CategorizedTasksDTO getCategorizedTasks(int userid);
 }

@@ -6,6 +6,8 @@
 
     <link th:href="@{/css/index.css}" rel="stylesheet" />
     <link th:href="@{/css/loginregister.css}" rel="stylesheet" />
+
+    <script th:src="@{/js/index.js}"></script>
 </head>
 <body>
 
@@ -28,7 +30,12 @@
 
         <div class="field">
             <label>Password</label>
-            <input type="text" name="username" th:field="*{password}"></input>
+            <input id="password" type="password" name="password" th:field="*{password}"></input>
+        </div>
+
+        <div class="field">
+            <label>Confirm Password</label>
+            <input id="password-confirm" type="password" name="confirmPassword" th:value="${confirmPassword}"></input>
         </div>
 
         <div class="button-group">

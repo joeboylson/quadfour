@@ -1,6 +1,8 @@
 package com.quadfour.dto;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="USERS")
@@ -9,19 +11,20 @@ public class UserDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="USER_ID")
-    private long id;
+    private Integer userId;
     @Column(name="USERNAME")
     private String username;
     @Column(name="PASSWORD")
     private String password;
 
-    public long getId() {
-        return id;
+    @OneToMany(mappedBy = "userId")
+    private List<TaskDTO> userTasks;
+
+    public int getId() {
+        return userId;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setId(Integer id) { this.userId = id; }
 
     public String getUsername() {
         return username;
@@ -37,5 +40,11 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<TaskDTO> getUserTasks() { return this.userTasks; }
+
+    public void setUserTasks(List<TaskDTO> tasks) {
+        this.userTasks = tasks;
     }
 }

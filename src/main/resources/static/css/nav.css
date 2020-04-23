@@ -46,6 +46,22 @@
     border: 1px solid rgb(227, 226, 223);
 }
 
+/* WORKSPACE BANNER */
+
+.workspace-banner {
+    display: flex;
+}
+
+.workspace-banner .banner-info {
+    flex: 0 0 calc(75% - 26px)
+}
+
+.workspace-banner .logout {
+    flex: 0 0 calc(25% - 26px)
+}
+
+
+
 /*SEARCH MODAL*/
 
 #search-modal::before {
