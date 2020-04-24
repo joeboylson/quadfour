@@ -228,12 +228,6 @@ public class QuadFourController {
 	) {
 		try{
 
-
-			System.out.println("=====================================================================================");
-			System.out.println(user.getPassword());
-			System.out.println(confirmPassword);
-			System.out.println(user.getPassword().equals(confirmPassword));
-
 			if ( user.getPassword().equals(confirmPassword) ) {
 				userDetailsService.register(user);
 				return "redirect:/";
